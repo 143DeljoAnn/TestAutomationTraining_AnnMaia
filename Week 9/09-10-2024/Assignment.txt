@@ -1,0 +1,45 @@
+package ExceptionHandling_Study;
+
+public class LimitedObjectFactory {
+
+   
+    private static final int MAX_OBJECTS = 3;
+
+    private static LimitedObjectFactory[] instances = new LimitedObjectFactory[MAX_OBJECTS];
+
+    private static int requestCount = 0;
+
+    private LimitedObjectFactory() {
+        System.out.println("New Object Created: " + this);
+    }
+
+    // Public static method to return objects in a round-robin manner
+    public static LimitedObjectFactory getInstance() {
+        if (requestCount < MAX_OBJECTS && instances[requestCount] == null) {
+
+            instances[requestCount] = new LimitedObjectFactory();
+        }
+
+        LimitedObjectFactory obj = instances[requestCount % MAX_OBJECTS];
+
+        requestCount++;
+
+        return obj;
+    }
+
+    public static void main(String[] args) {
+        // Request for multiple objects to test round-robin functionality
+        LimitedObjectFactory obj1 = LimitedObjectFactory.getInstance();
+        LimitedObjectFactory obj2 = LimitedObjectFactory.getInstance();
+        LimitedObjectFactory obj3 = LimitedObjectFactory.getInstance();
+        LimitedObjectFactory obj4 = LimitedObjectFactory.getInstance(); // Will return the first object again
+        LimitedObjectFactory obj5 = LimitedObjectFactory.getInstance(); // Will return the second object again
+
+        // Display the objects to verify round-robin pattern
+        System.out.println("Object 1: " + obj1);
+        System.out.println("Object 2: " + obj2);
+        System.out.println("Object 3: " + obj3);
+        System.out.println("Object 4: " + obj4);  // Should be the same as Object 1
+        System.out.println("Object 5: " + obj5);  // Should be the same as Object 2
+    }
+}
