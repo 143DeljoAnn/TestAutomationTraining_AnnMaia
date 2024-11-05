@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium Test Example</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .message { margin-top: 20px; color: green; }
+    </style>
+</head>
+<body>
+    <h1>Form Submission Example</h1>
+    <form id="testForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        <br><br>
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+		<br><br>
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+        </select>
+        <br><br>
+        <button type="submit" id="submitButton">Submit</button>
+    </form>
+    <div class="message" id="message"></div>
+
+    <script>
+        document.getElementById("testForm").onsubmit = function(event) {
+            event.preventDefault(); // Prevent form submission
+            const username = document.getElementById("username").value;
+            const age = document.getElementById("age").value;
+			const email = document.getElementById("email").value;
+			const country = document.getElementById("country").value;
+            document.getElementById("message").innerText = `Submitted! Username: ${username}, Age: ${age}, Email: ${email}, Country: ${country}`;
+        };
+    </script>
+</body>

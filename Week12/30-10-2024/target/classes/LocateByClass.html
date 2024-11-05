@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locate by Class Example</title>
+    <style>
+        .message {
+            display: none;
+            color: green;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function showMessage() {
+            document.getElementById("successMessage").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Button Click Example</h1>
+    <p>Click the button below to see a message:</p>
+        <!-- Button element with class "button" -->
+    <button class="button" onclick="showMessage()">Click Me</button>
+    
+    <!-- Hidden message element with class "message" -->
+    <p id="successMessage" class="message">Button clicked successfully!</p>
+</body>
+</html>
